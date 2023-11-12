@@ -1,6 +1,26 @@
 import React from 'react';
 import "./LoginForm.css";
+import Firebase from "../../Firebase"; // Import Firebase component
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
 function LoginForm() {
+  const handleGoogleLogin = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      alert(`Successfully logged in as ${user.displayName || user.email}`);
+      
+      // Additional logic to send login credentials to Firebase if needed
+      // For example, you can save user data to Firestore or Realtime Database
+    } catch (error) {
+      console.error(error.message);
+      alert('Failed to log in. Please try again.');
+    }
+  };
+
   return (
     <form>
       <div className="mb-3">
@@ -27,12 +47,10 @@ function LoginForm() {
       <button type="submit" className="btn btn-primary">
         Submit
       </button>
-
-      {/* Social Login Options */}
       <div className="mt-3">
         <p>Or login with:</p>
         <div className="d-flex justify-content-between">
-          <button type="button" className="btn btn-outline-danger">
+          <button type="button" className="btn btn-outline-danger" onClick={handleGoogleLogin}>
             <i className="bi bi-google"></i> Google
           </button>
           <button type="button" className="btn btn-outline-dark">
