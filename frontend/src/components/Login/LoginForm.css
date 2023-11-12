@@ -1,0 +1,103 @@
+/* Basic styling for the form container */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for form labels */
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Style for form inputs and checkboxes */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-check-input {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Style for the submit button */
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for social login buttons */
+  .btn-outline-danger,
+  .btn-outline-dark,
+  .btn-outline-primary {
+    width: calc(33.33% - 10px);
+  }
+  
+  /* Additional styling for the social login options */
+  .mt-3 p {
+    margin-bottom: 10px;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 600px) {
+    form {
+      max-width: 100%;
+    }
+  
+    .btn-outline-danger,
+    .btn-outline-dark,
+    .btn-outline-primary {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

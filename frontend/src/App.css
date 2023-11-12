@@ -1,0 +1,17 @@
+/* Basic styling for the App container */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4; /* Set your desired background color */
+  }
+  
+  /* Add more styles based on your design preferences */
+  
