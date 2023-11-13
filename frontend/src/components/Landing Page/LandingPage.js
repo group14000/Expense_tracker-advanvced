@@ -1,7 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"; // Import Routes instead of Switch
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import LoginForm from "../Login/LoginForm";
 import Signup from "../Sign Up/Signup";
+import ExpenseTrackerForm from "../ExpenseTracker/ExpenseTrackerForm"; // Import the ExpenseTrackerForm component
 import "./LandingPage.css";
 
 function LandingPage() {
@@ -24,10 +31,16 @@ function LandingPage() {
           </Link>
         </div>
 
-        {/* Routing for Login and Signup Pages */}
+        {/* Routing for Login, Signup, and ExpenseTrackerForm Pages */}
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/expense-tracker-form"
+            element={<ExpenseTrackerForm />}
+          />
+          {/* Add a default route to redirect to /login */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </Router>
