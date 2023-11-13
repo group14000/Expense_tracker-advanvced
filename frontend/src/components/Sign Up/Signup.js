@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./Signup.css";
 
 function Signup() {
-  const [name, setName] = useState('');
-  const [profilePhoto, setProfilePhoto] = useState(null);
-  const [dob, setDob] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dob, setDob] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleProfilePhotoChange = (e) => {
-    // Handle profile photo upload logic here
-    setProfilePhoto(e.target.files[0]);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handleDobChange = (e) => {
@@ -32,15 +31,19 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Add validation logic for password confirmation
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
 
-    // Handle form submission logic here
+    // Store data in local storage
+    const userData = { name, email, dob, password };
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-    // For example, you can send the data to a server or perform further actions
+    // Add further form submission logic here
+
+    // Show success message
+    alert("Successfully Sign Up");
   };
 
   return (
@@ -58,14 +61,15 @@ function Signup() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="profilePhoto" className="form-label">
-          Profile Photo
+        <label htmlFor="email" className="form-label">
+          Email
         </label>
         <input
-          type="file"
+          type="email"
           className="form-control"
-          id="profilePhoto"
-          onChange={handleProfilePhotoChange}
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
         />
       </div>
       <div className="mb-3">

@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useState } from "react";
 import "./LoginForm.css";
-import Firebase from "../../Firebase"; // Import Firebase component
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Retrieve user data from local storage
+    const storedUserData = localStorage.getItem("userData");
+    const userData = storedUserData ? JSON.parse(storedUserData) : null;
+
+    if (
+      userData &&
+      userData.email === email &&
+      userData.password === password
+    ) {
+      // Successfully logged in
+      alert("Successfully logged in");
+
+      // Additional logic to send login credentials to Firebase if needed
+      // For example, you can save user data to Firestore or Realtime Database
+    } else {
+      // Failed to log in
+      alert("Failed to log in. Please check your credentials and try again.");
+    }
+  };
+
   const handleGoogleLogin = async () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -12,22 +46,28 @@ function LoginForm() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       alert(`Successfully logged in as ${user.displayName || user.email}`);
-      
+
       // Additional logic to send login credentials to Firebase if needed
       // For example, you can save user data to Firestore or Realtime Database
     } catch (error) {
       console.error(error.message);
-      alert('Failed to log in. Please try again.');
+      alert("Failed to log in. Please try again.");
     }
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           Email address
         </label>
-        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        <input
+          type="email"
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          onChange={handleEmailChange}
+        />
         <div id="emailHelp" className="form-text">
           We'll never share your email with anyone else.
         </div>
@@ -36,10 +76,19 @@ function LoginForm() {
         <label htmlFor="exampleInputPassword1" className="form-label">
           Password
         </label>
-        <input type="password" className="form-control" id="exampleInputPassword1" />
+        <input
+          type="password"
+          className="form-control"
+          id="exampleInputPassword1"
+          onChange={handlePasswordChange}
+        />
       </div>
       <div className="mb-3 form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="exampleCheck1"
+        />
         <label className="form-check-label" htmlFor="exampleCheck1">
           Check me out
         </label>
@@ -50,7 +99,11 @@ function LoginForm() {
       <div className="mt-3">
         <p>Or login with:</p>
         <div className="d-flex justify-content-between">
-          <button type="button" className="btn btn-outline-danger" onClick={handleGoogleLogin}>
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            onClick={handleGoogleLogin}
+          >
             <i className="bi bi-google"></i> Google
           </button>
           <button type="button" className="btn btn-outline-dark">
