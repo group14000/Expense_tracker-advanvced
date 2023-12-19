@@ -1,25 +1,17 @@
-import React from 'react';
-import { Header } from './components/Header';
-import { Balance } from './components/Balance';
-import { IncomeExpenses } from './components/IncomeExpenses';
-import { TransactionList } from './components/TransactionList';
-import { AddTransaction } from './components/AddTransaction';
-
-import { GlobalProvider } from './context/GlobalState';
-
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Auth } from "./pages/auth/index";
+import { ExpenseTracker } from "./pages/expense-tracker/index";
 
 function App() {
   return (
-    <GlobalProvider>
-      <Header />
-      <div className="container">
-        <Balance />
-        <IncomeExpenses />
-        <TransactionList />
-        <AddTransaction />
-      </div>
-    </GlobalProvider>
+    <div className="App min-h-screen bg-gray-100">
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Auth />} />
+          <Route path="/expense-tracker" element={<ExpenseTracker />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
